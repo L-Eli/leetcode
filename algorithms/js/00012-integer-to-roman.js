@@ -13,17 +13,16 @@ var intToRoman = function (num) {
     1000: 'M',
   };
 
-  let numDigits = parseInt(Math.log10(num) + 1);
+  let numDigits = num.toString().length;
   let result = '';
+
   for (let i = 0; i < numDigits; i++) {
     let place = parseInt(Math.pow(10, (numDigits - i - 1)));
     let firstNum = parseInt(num / place);
     if (firstNum == 4) {
-      result += map[place];
-      result += map[place * 5];
+      result += map[place] + map[place * 5];
     } else if (firstNum == 9) {
-      result += map[place];
-      result += map[place * 10];
+      result += map[place] + map[place * 10];
     } else {
       if (firstNum > 4) {
         result += map[place * 5];
@@ -38,3 +37,5 @@ var intToRoman = function (num) {
 
   return result;
 };
+
+console.log(intToRoman(1264));
